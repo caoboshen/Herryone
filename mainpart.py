@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 
 window=tk.Tk()
 window.title('search-douban')
-window.geometry('600x500')
+window.geometry('600x500')#创建窗口
 
 e=tk.Entry(window,show=None)
 e.place(x=100,y=20)
@@ -22,16 +22,16 @@ e.place(x=100,y=20)
 var1=tk.StringVar()
 var2=tk.StringVar()
 var3=tk.StringVar()
-t=[]
-i=0
+i=0#i控制展示哪个结果
 
-def setpic(j):
+def setpic(j):#放置图片
     global imagen
     file = Image.open("D://doubanpics//"+str(j)+".jpg")
     imagen=ImageTk.PhotoImage(file)
     k=tk.Label(window,image=imagen)    
     k.place(x=50,y=80)
 
+#得到结果并展示第一个
 def search():
     f=e.get()
     if(f is None):
@@ -40,7 +40,7 @@ def search():
         var3.set('')
     else:
         html=getsubject(f)
-        global ndatalist
+        global ndatalist#得到数据实例
         ndatalist=dealurl(html)
         global i
         i=0
@@ -48,7 +48,7 @@ def search():
         var2.set(ndatalist[0].fraction)
         var3.set(ndatalist[0].kind)
         setpic(0)
-
+#控制i，并展示与i相对应的结果的两个函数
 def gonext():
     try:
         global i
@@ -77,7 +77,7 @@ def golast():
         var1.set('')
         var2.set('')
         var3.set('')
-
+#放置标签
 a1=tk.Label(window,textvariable=var1,width=30,height=1)
 a1.place(x=400,y=150)
 a2=tk.Label(window,textvariable=var2,width=30,height=1)
